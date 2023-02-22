@@ -1,0 +1,47 @@
+{
+  "name": "CertaLink for noCRM",
+  "description": "Certalink for noCRM puts your critical lead data right where you live - in Gmail ",
+  "version": "1.1.17",
+  "background": {
+    "service_worker": "index.js"
+  },
+  "action": {
+    "default_title": "CertaLink for noCRM"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; frame-src 'self' https://portal.certalink.com;"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mail.google.com/*"
+      ],
+      "js": [
+        "gmail/inboxsdk.js",
+        "gmail/script.js"
+      ],
+      "css": [
+        "gmail/style.css"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "icons": {
+    "16": "resources/images/nocrm32.png",
+    "48": "resources/images/nocrm48.png",
+    "128": "resources/images/nocrm128.png"
+  },
+  "web_accessible_resources": [{
+    "resources": ["pageWorld.js","gmail/markup.html","resources/images/nocrm16.png","resources/images/nocrm32.png","resources/images/nocrm48.png","resources/images/nocrm64.png"],
+    "matches": ["<all_urls>"]
+  }],
+
+  "permissions": [
+    "storage"
+  ],
+
+  "host_permissions": [
+    "https://mail.google.com/"
+  ],
+  "manifest_version": 3
+}
